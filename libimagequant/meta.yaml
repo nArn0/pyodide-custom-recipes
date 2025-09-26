@@ -1,0 +1,32 @@
+package:
+  name: libimagequant
+  version: 2.18.0
+  tag:
+    - library
+    - static_library
+source:
+  url: http://pngquant.org/pngquant-2.18.0-src.tar.gz
+  extract_dir: pngquant-2.18.0
+  sha256: e72194b52b36f040deaec49a1ddd5dcd8d4feecc3a5fe6c5e9589a9707b233d4
+  extras:
+    - - extras/imagequant.pc.in
+      - lib/imagequant.pc.in
+
+build:
+  type: static_library
+  script: |
+    cd ./lib
+    emconfigure ./configure \
+        CFLAGS="-fPIC" \
+        --disable-sse \
+        --prefix=${WASM_LIBRARY_DIR}
+    emmake make -j ${PYODIDE_JOBS:-3}
+    emmake make install
+
+about:
+  home: https://pngquant.org/
+  summary:
+    Convert 24/32-bit images to 8-bit palette with alpha channel.
+    For lossy PNG compression and high-quality GIF images
+  license: Dual-licensed GPLv3 and commercial
+
