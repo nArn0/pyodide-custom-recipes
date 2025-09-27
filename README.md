@@ -21,6 +21,7 @@ Personal notes
 For pyenv:
 ```
 sudo apt-get install libncurses-dev libbz2-dev libreadline-dev libffi-dev libssl-dev liblzma-dev libsqlite3-dev libltdl-dev libpng-dev -y
+```
 
 For pyodide:
 ```
